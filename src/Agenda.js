@@ -1,4 +1,4 @@
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, } from 'react-bootstrap'; // Table
 import logo from './assets/img/motoalejotrans.png'
 import './App.css'
 function Agenda() {
@@ -35,8 +35,8 @@ function Agenda() {
             <br className='my-5'></br>
             <br></br>
 
-            {/* 
-            <section class="page-section bg-dark text-white">
+            
+            {/* <section class="page-section bg-dark text-white">
                 
                 <Table striped bordered hover className='bg-light text-center container'>
                     <thead>
@@ -66,38 +66,32 @@ function Agenda() {
                         <td>@twitter</td>
                         </tr>
                     </tbody>
-                    </Table>
+                    </Table>*/}
                 
-            </section> */}
+            {/*</section> */}
             {/* Listar citas */}
-            <div class="container text-center">
-                <h1 className='my-5 text-white'>Listando Alumnos...</h1>
-                <table class="table table-striped table-bordered bg-white table-sm">
+            <div className='container text-center'>
+                <h1 className='my-5 text-white'>Agenda</h1>
+                <table class="table table-bordered table-hover">
                     <thead>
-                    <tr class="table-dark text-white">
-                        <th scope="col">DNI</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Accion</th>
-                    </tr>
+                        <tr className='table-dark'>
+                        <th scope="col">Type</th>
+                        <th scope="col">Column heading</th>
+                        <th scope="col">Column heading</th>
+                        <th scope="col">Column heading</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        {/* for user in total_alumnos */}
-                    <tr>
-                        <th></th>
-                        <td></td>
-                        <td></td>
-                        <td>juan.perez@example.com</td>
-                        <td>
-                            <li class="btn btn-danger">Modificar</li>
-                            <li class="btn btn-danger">Eliminar</li>
-                        </td>
+                        <tr class="table-light">
+                        <th scope="row">Active</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
                         </tr>
-                
-            </tbody>
-        </table> 
-        </div>
+                        
+                    </tbody>
+                </table>
+            </div>
 
 
     </div>
