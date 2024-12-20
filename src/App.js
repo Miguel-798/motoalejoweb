@@ -1,6 +1,6 @@
-import Landing from './views/landing';
-import Agenda from './views/Agenda';
-// import './views/App.css'
+import Landing from './landing';
+import Agenda from './Agenda';
+// import './App.css'
 import { BrowserRouter, Route, Routes, } from 'react-router-dom'
 
 function App() {
