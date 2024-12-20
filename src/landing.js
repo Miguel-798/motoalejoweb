@@ -140,7 +140,7 @@ function Landing() {
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="#inicio" title="Project Name">
+                        <a class="portfolio-box" href="/agenda" title="Project Name">
                             <img class="img-fluid" src={muro} alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Agenda</div>
@@ -165,8 +165,8 @@ function Landing() {
         {/* */}
         <section class="page-section bg-dark text-white">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
+                <h2 class="mb-4">Nos gustaria escucharte!</h2>
+                <a class="btn btn-light btn-xl" href="#inicio">coméntanos!</a>
             </div>
         </section> 
         {/* Contact */}
@@ -226,7 +226,7 @@ function Landing() {
                         <option value="revision">Revisión general</option>
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-success w-100">
+                    <button type="submit" className="btn btn-dark w-100">
                         Agendar Cita
                     </button>
                     </form>
