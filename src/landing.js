@@ -9,8 +9,19 @@ import repuestos from './assets/img/portfolio/fullsize/repos.png'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { saveAgenda } from './AgendaApi';
+import { useNavigate } from 'react-router-dom';
 
 function Landing() {
+
+    const agenda = {};
+    const history = useNavigate();
+
+    const save = () => {
+            saveAgenda(agenda);
+            history('/agendas');
+        }
+
     return (
         <div>
       {/* Navigation 
@@ -49,7 +60,7 @@ function Landing() {
                         <NavDropdown.Item href="#action/3.2">
                             Carrito
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/agenda">Citas</NavDropdown.Item>
+                        <NavDropdown.Item href="/agendas">Citas</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                             Cerrar Sesión
@@ -92,35 +103,35 @@ function Landing() {
     {/* services */}
     <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
+                <h2 class="text-center mt-0">A Tu Servicio</h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <h3 class="h4 mb-2">Servicio profesional</h3>
+                            <p class="text-muted mb-0">Ofrecemos un servicio de calidad y garantías de reparación o mantenimiento</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            <h3 class="h4 mb-2">Trato</h3>
+                            <p class="text-muted mb-0">Ofrecemos un buen trato personalizado</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                            <h3 class="h4 mb-2">Calidad-precio </h3>
+                            <p class="text-muted mb-0">Ofrecemos el mejor servicio posible a un precio competitivo</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                            <h3 class="h4 mb-2">Hecho con amor</h3>
+                            <p class="text-muted mb-0"></p>
                         </div>
                     </div>
                 </div>
@@ -168,6 +179,7 @@ function Landing() {
                 <h2 class="mb-4">Nos gustaria escucharte!</h2>
                 <a class="btn btn-light btn-xl" href="#inicio">coméntanos!</a>
             </div>
+            
         </section> 
         {/* Contact */}
         <section class="page-section" id="contact">
@@ -193,32 +205,32 @@ function Landing() {
                         <label htmlFor="name" className="form-label">
                         Nombre y/o modelo
                         </label>
-                        <input type="text" className="form-control" id="name" placeholder="Ingresa tu nombre y/o modelo" required />
+                        <input type="text" className="form-control" id="name" onChange={e => agenda.Nombremodelo = e.target.value} defaultValue={agenda.Nombremodelo} placeholder="Ingresa tu nombre y/o modelo" required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="phone" className="form-label">
                         Teléfono
                         </label>
-                        <input type="tel" className="form-control" id="phone" placeholder="Ingresa tu número de teléfono" required />
+                        <input type="tel" className="form-control" id="phone" onChange={e => agenda.Telefono = e.target.value} defaultValue={agenda.Telefono} placeholder="Ingresa tu número de teléfono" required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="date" className="form-label">
                         Fecha
                         </label>
-                        <input type="date" className="form-control" id="date" required />
+                        <input type="date" className="form-control" id="date" onChange={e => agenda.Fecha = e.target.value} defaultValue={agenda.Fecha} required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="time" className="form-label">
                         Hora
                         </label>
-                        <input type="time" className="form-control" id="time" required />
+                        <input type="time" className="form-control" id="time" onChange={e => agenda.Hora = e.target.value} defaultValue={agenda.Hora} required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="service" className="form-label">
                         Servicio
                         </label>
-                        <select className="form-select" id="service" required>
-                        <option value="" disabled selected>
+                        <select className="form-select" id="service" onChange={e => agenda.Servicio = e.target.value} defaultValue={agenda.Servicio} required>
+                        <option value=""  disabled selected>
                             Selecciona un servicio
                         </option>
                         <option value="mantenimiento">Mantenimiento</option>
@@ -226,7 +238,7 @@ function Landing() {
                         <option value="revision">Revisión general</option>
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-dark w-100">
+                    <button type="submit" onClick={save} className="btn btn-dark w-100">
                         Agendar Cita
                     </button>
                     </form>
@@ -239,13 +251,14 @@ function Landing() {
                     </div>
                 </div> 
             </div>
+            
         </section> 
         {/* Footer */}
             <footer class="bg-light py-5">
                 <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2024 - MotoAlejo</div></div>
-                <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Contacto: +1 (555) 584 8822</div></div>
+                <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Contacto: +57 (321) 811 4056</div></div>
             </footer>
-</div>
+        </div>
     );
 }
 

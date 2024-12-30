@@ -11006,3 +11006,7 @@ header.masthead h1, header.masthead .h1 {
   width: 100vw;
   height: 100vh;
 }
+
+.table-dark:first-child {
+  text-transform: uppercase;
+}
