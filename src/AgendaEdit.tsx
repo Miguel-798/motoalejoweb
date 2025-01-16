@@ -1,23 +1,29 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Nav, Navbar, NavDropdown, } from 'react-bootstrap'; // Table
 import logo from './assets/img/motoalejotrans.png'
 import './App.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useMatch, useNavigate, useParams } from 'react-router-dom';
 import { saveAgenda, searchAgendaByNombre } from './AgendaApi';
 import { useEffect, useState } from 'react';
+import Agenda from './Agenda';
+
 
 
 function AgendaEdit() {
 
-    const {Nombre} = useParams();
-    const [agenda, setAgenda]= useState({});
+    const {Nombre} = useParams<{Nombre: string;}>();
+    
+    const [agenda, setAgenda]= useState<Agenda>({});
     const history = useNavigate();
 
-   
+   const routeMatch= useMatch("/agenda/:id");
+    const id = routeMatch?.params?.id;
+    
+    const search = async () =>{
 
-    const search = () =>{
-
-        if (Nombre !== 'new') {
-            let result = searchAgendaByNombre(Nombre);
+        
+        if (id !== 'new') {
+            const result = await searchAgendaByNombre(String(id));
             setAgenda(result);
         }
     }
@@ -26,7 +32,7 @@ function AgendaEdit() {
     useEffect(() =>{
         
     search();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
     }, []);
     
     
@@ -42,10 +48,10 @@ function AgendaEdit() {
     
 
     return (
-        <div className='pepito'>
+        <div className='fondo'>
             {/* Navigation */}
             <Navbar expand="lg" className="bg-body-tertiary shadow  col-12 col-sm-12 col-md-12 col-lg-12 fixed-top">
-                <div class="container px-4 px-lg-5">
+                <div className="container px-4 px-lg-5">
                     <div className='d-flex '>
                         <img src={logo} className="App-logo2 mx-4" alt="logo" />
                         <Navbar.Brand className='mt-2 ' href="/">Inicio</Navbar.Brand>
@@ -80,15 +86,15 @@ function AgendaEdit() {
             
             {/* Editar citas */}
            
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-5 text-light">{Nombre === 'new' ? 'Agregar Cita!' : 'Editar Cita!'}</h2>
-                        <hr class="divider" />
+            <div className="container px-4 px-lg-5">
+                <div className="row gx-4 gx-lg-5 justify-content-center">
+                    <div className="col-lg-8 col-xl-6 text-center">
+                        <h2 className="mt-5 text-light">{Nombre === 'new' ? 'Agregar Cita!' : 'Editar Cita!'}</h2>
+                        <hr className="divider" />
                     </div>
                 </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-5 text-light">
-                    <div class="col-lg-6">
+                <div className="row gx-4 gx-lg-5 justify-content-center mb-5 text-light">
+                    <div className="col-lg-6">
                        {/* <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *--> 
@@ -101,31 +107,31 @@ function AgendaEdit() {
                         <label htmlFor="name" className="form-label">
                         Nombre y/o modelo
                         </label>
-                        <input type="text" className="form-control" id="name" onChange={e => agenda.Nombremodelo = e.target.value} defaultValue={agenda.Nombremodelo} placeholder="Ingresa tu nombre y/o modelo" required />
+                        <input type="text" className="form-control" id="name" onChange={e => agenda.nombre_modelo = String(e.target.value)} defaultValue={agenda.nombre_modelo} placeholder="Ingresa tu nombre y/o modelo" required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="phone" className="form-label">
                         Teléfono
                         </label>
-                        <input type="tel" className="form-control" id="phone" onChange={e => agenda.Telefono = e.target.value} defaultValue={agenda.Telefono} placeholder="Ingresa tu número de teléfono" required />
+                        <input type="tel" className="form-control" id="phone" onChange={e => agenda.telefono = String(e.target.value)} defaultValue={agenda.telefono} placeholder="Ingresa tu número de teléfono" required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="date" className="form-label">
                         Fecha
                         </label>
-                        <input type="date" className="form-control" id="date" onChange={e => agenda.Fecha = e.target.value} defaultValue={agenda.Fecha} required />
+                        <input type="date" className="form-control" id="date" onChange={e => agenda.fecha = String(e.target.value)} defaultValue={agenda.fecha} required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="time" className="form-label">
                         Hora
                         </label>
-                        <input type="time" className="form-control" id="time" onChange={e => agenda.Hora = e.target.value} defaultValue={agenda.Hora} required />
+                        <input type="time" className="form-control" id="time" onChange={e => agenda.hora = String(e.target.value)} defaultValue={agenda.hora} required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="service" className="form-label">
                         Servicio
                         </label>
-                        <select className="form-select" id="service" onChange={e => agenda.Servicio = e.target.value} Value={agenda.Servicio} required>
+                        <select className="form-select" id="service" onChange={e => agenda.servicio = String(e.target.value)} defaultValue={agenda.servicio} required>
                         <option value="" disabled selected>
                             Selecciona un servicio
                         </option>

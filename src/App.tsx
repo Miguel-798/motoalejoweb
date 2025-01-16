@@ -1,10 +1,14 @@
-import Landing from './landing';
-import Agendas from './Agendas';
+/* eslint-disable react/react-in-jsx-scope */
+
 // import './App.css'
 import { BrowserRouter, Route, Routes, } from 'react-router-dom'
-import AgendaEdit from './AgendaEdit';
 
-function App() {
+import Landing from './Landing.tsx';
+import AgendaEdit from './AgendaEdit.tsx';
+import Agendas from './Agendas.tsx';
+
+
+const App = (): JSX.Element => {
   return (
     <BrowserRouter>
     <Routes>
